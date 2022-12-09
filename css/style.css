@@ -1,7 +1,5 @@
-body, html {
+body {
   justify-content: center;
-    /* background-color: rgba(0, 0, 0, 0.123); */
-	/* Use a system font, if none are available use an available sans-sarif   font */
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
 		Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	margin: 0;
@@ -10,6 +8,9 @@ body, html {
   flex-direction: column;
   font-size: 2vh;
   user-select: none;
+  background-image: url('../assets/ttt_vape_bg.png');
+  background-size:cover;
+  /* background-repeat: no-repeat; */
 }
 
 .container {
@@ -35,6 +36,7 @@ body, html {
   font-family: poiret one, sans-sarif;
   font-size: 4vmin;
   margin-top: -1vmin;
+  color:white;
 }
 
 section.board {
@@ -49,19 +51,20 @@ div.sqr {
   font-size: 8vmin;
   text-align: center;
   vertical-align: middle;
+  color:white;
 }
 
 .insideV {
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  border-left: 2px solid rgb(255, 255, 255);
+  border-right: 2px solid rgb(255, 255, 255);
 }
 .insideH {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 2px solid rgb(255, 255, 255);
+  border-bottom: 2px solid rgb(255, 255, 255);
 }
 
 #sq4{
-  border: 1px solid black;
+  border: 2px solid rgb(255, 255, 255);
 }
 
 #reset{
