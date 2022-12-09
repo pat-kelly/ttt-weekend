@@ -9,6 +9,7 @@ body, html {
   display: flex;
   flex-direction: column;
   font-size: 2vh;
+  user-select: none;
 }
 
 .container {
@@ -18,15 +19,22 @@ body, html {
 }
 
 #title{
+  /* height: 11vmin; */
   font-family: 'monoton';
   font-weight: 900;
-  font-size: 10vmin;
+  font-size: 9vmin;
+  margin: 0;
   
-  /* color: linear-gradient(to top right, blue, purple) */
-  background: -webkit-linear-gradient(blue, purple);
-  /* background-color: linear; */
-  -webkit-background-clip: text;
+  background: linear-gradient(to top right, rgb(26, 26, 199), rgb(255, 0, 255));
+  background-clip:text;
+  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
+}
+
+#message{
+  font-family: poiret one, sans-sarif;
+  font-size: 4vmin;
+  margin-top: -1vmin;
 }
 
 section.board {
