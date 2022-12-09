@@ -40,7 +40,8 @@ function init(){
 
 function handleClick(evt){
   if(evt.target.id === 'board') return;
-  const sqIdx = evt.target.id;
+  const sqIdx = evt.target.id.slice(2);
+  // console.log('sqIdx', sqIdx)
   // console.log(board[sqIdx])
   if(board[sqIdx]) return;
   if(winner) return;

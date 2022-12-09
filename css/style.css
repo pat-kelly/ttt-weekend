@@ -1,5 +1,6 @@
-body {
-    background-color: rgba(0, 0, 0, 0.123);
+body, html {
+  justify-content: center;
+    /* background-color: rgba(0, 0, 0, 0.123); */
 	/* Use a system font, if none are available use an available sans-sarif   font */
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
 		Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -7,6 +8,25 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  font-size: 2vh;
+}
+
+.container {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title{
+  font-family: 'monoton';
+  font-weight: 900;
+  font-size: 10vmin;
+  
+  /* color: linear-gradient(to top right, blue, purple) */
+  background: -webkit-linear-gradient(blue, purple);
+  /* background-color: linear; */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 section.board {
@@ -16,13 +36,28 @@ section.board {
   grid-gap: 0vmin;
 }
 
-div {
-  border: 1px solid black;
+div.sqr {
+  /* border: 1px solid black; */
   font-size: 8vmin;
   text-align: center;
   vertical-align: middle;
 }
 
-button{
-  max-width: 100px;
+.insideV {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.insideH {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+#sq4{
+  border: 1px solid black;
+}
+
+#reset{
+  margin-top: 20px;
+  padding: 1vmin 2vmin;
+  font-size: 2vmin;
 }
