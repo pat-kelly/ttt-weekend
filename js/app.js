@@ -20,6 +20,7 @@ const resetBtnEl = document.getElementById('reset');
 const toggleAnim = document.getElementById('anim');
 const deloreans = document.getElementsByClassName('delorean');
 
+
 /*----------------------------- Event Listeners -----------------------------*/
 boardEl.addEventListener('click', handleClick);
 resetBtnEl.addEventListener('click', init);
@@ -28,6 +29,7 @@ toggleAnim.addEventListener('click', pauseAnims)
 /*-------------------------------- Functions --------------------------------*/
 //initialize after page loads.
 document.onload = init();
+document.onload = animateCars();
 
 function init(){
   //initialize variables
@@ -40,7 +42,6 @@ function init(){
   //initialize the board model to null values
   for (const sqr of squareEls) board.push(null);
   render();
-  animateCars();
 }
 
 function handleClick(evt){
@@ -95,7 +96,7 @@ function render(){
 function updateBoard(){
   board.forEach((sqr, idx) => {
     if(sqr){
-      sqr < 0 ? squareEls[idx].textContent = 'X' : squareEls[idx].textContent = 'O'
+      sqr < 0 ? squareEls[idx].innerHTML = "<img src='../assets/X.png'>" : squareEls[idx].textContent = 'O'
     }else squareEls[idx].textContent = '';
   });
 }
@@ -132,9 +133,11 @@ function animateCars(stop = false){
   }
 
   delEls.forEach((car, idx) => {
-    let pos = car.style.left.slice(0,3);
+    let pos = car.style.left.slice(0,-2);
+    console.log(pos);
+    const speed = [40, 30, 20, 10, 5]
     clearInterval(timeoutIds[idx]);
-    timeoutIds[idx] = setInterval(frame, (idx+1)*2); //change 1 to something else non-static once you get this running.
+    timeoutIds[idx] = setInterval(frame, ((speed[idx]))); //change 1 to something else non-static once you get this running.
     function frame(){
       if(pos === window.innerWidth){
         pos = -150;

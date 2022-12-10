@@ -10,9 +10,14 @@ body {
   user-select: none;
   background-image: url('../assets/ttt_vape_bg.png');
   background-size:cover;
+  /* background-repeat: no-repeat; */
   overflow-x: hidden;
   /* background-repeat: no-repeat; */
 }
+
+/* @media { min-width: ;
+  
+} */
 
 .container {
   display:flex;
@@ -26,7 +31,6 @@ body {
   font-weight: 900;
   font-size: 9vmin;
   margin: 0;
-  
   background: linear-gradient(to top right, rgb(26, 26, 199), rgb(255, 0, 255));
   background-clip:text;
 
@@ -45,8 +49,8 @@ body {
 
 section.board {
   display: grid;
-  grid-template-rows: repeat(3, 10vmin);
-  grid-template-columns: repeat(3, 10vmin);
+  grid-template-rows: repeat(3, 15vmin);
+  grid-template-columns: repeat(3, 15vmin);
   grid-gap: 0vmin;
 }
 
@@ -56,6 +60,13 @@ div.sqr {
   text-align: center;
   vertical-align: middle;
   color:white;
+  /* max-width: 10vmin;
+  max-height: 10vmin; */
+
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 
 .insideV {
@@ -87,19 +98,25 @@ div.sqr {
   display:none;
 }
 
+img{
+  max-width: 100%;
+  max-height: 100%;
+}
+/* @media (max-height: ) */
+
 #d1{
   left:-150px;
-  top:-140px;
+  top: -13vmin;
   width: 25px;
 }
 #d2{
   left:-150px;
-  top:-120px;
+  top:-10vmin;
   width: 35px;
 }
 #d3{
   left:-150px;
-  top:-60px;
+  top:-10vmin;
 }
 #d4{
   left:-150px;
