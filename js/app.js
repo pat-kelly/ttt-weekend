@@ -5,7 +5,6 @@ const winningCombos = [
   [0,4,8], [2,4,6]
 ]
 const timeoutIds = [];
-const pausedTimeouts = [];
 /*---------------------------- Variables (state) ----------------------------*/
 let board, turn, winner, tie;
 //board is an array of the board state
@@ -24,7 +23,7 @@ const deloreans = document.getElementsByClassName('delorean');
 /*----------------------------- Event Listeners -----------------------------*/
 boardEl.addEventListener('click', handleClick);
 resetBtnEl.addEventListener('click', init);
-toggleAnim.addEventListener('click', hideDeloreans)
+toggleAnim.addEventListener('click', pauseAnims)
 
 /*-------------------------------- Functions --------------------------------*/
 //initialize after page loads.
@@ -41,7 +40,7 @@ function init(){
   //initialize the board model to null values
   for (const sqr of squareEls) board.push(null);
   render();
-  delorean();
+  animateCars();
 }
 
 function handleClick(evt){
@@ -115,34 +114,27 @@ function getCurPlayer(){
 
 
 
-function delorean(stop = false){
+function animateCars(stop = false){
 
   const delEls = document.querySelectorAll('.delorean');
-  console.log(delEls);
+  // console.log(delEls);
 
   if(stop){
-    console.log('in stop');
+    // console.log('in stop');
     let id = setTimeout(function() {}, 0);
     // console.log(id);
     while (id--) {
       clearTimeout(id); // will do nothing if no timeout with id is present
       timeoutIds.pop();
     }
-    // delEls.forEach(car =>{
-    //   car.style.left = '';
-    // })
-    console.log(timeoutIds);
+    // console.log(timeoutIds);
     return;
   }
 
   delEls.forEach((car, idx) => {
-    console.log(car.style.left);
     let pos = car.style.left.slice(0,3);
-    console.log('pos',pos);
-    // console.log(car,idx);
-    // console.log(timeoutIds)
     clearInterval(timeoutIds[idx]);
-    timeoutIds[idx] = setInterval(frame, 1); //change 1 to something else non-static once you get this running.
+    timeoutIds[idx] = setInterval(frame, (idx+1)*2); //change 1 to something else non-static once you get this running.
     function frame(){
       if(pos === window.innerWidth){
         pos = -150;
@@ -153,52 +145,24 @@ function delorean(stop = false){
       // console.log(car.style.left);
     }
   });
-  // let pos = -150;
-  // clearInterval(timeoutId);
-  // timeoutId = setInterval(frame, 10);
-  // function frame(){
-  //   if(pos === window.innerWidth){
-  //     // clearInterval(timeoutId);
-  //     pos=-150;
-  //   }else{
-  //     pos ++;
-  //     dEl.style.left = pos + 'px';
-  //   }
-  // }
-
 }
 
-function hideDeloreans(evt){
-  // console.log(deloreans);
-  const cars = document.querySelectorAll('.delorean');
+function pauseAnims(evt){
   let targetClass = evt.target.className;
-  let state = '';
 
   switch(targetClass){
     case('running'):
       // console.log('in running');
       evt.target.classList.remove('running');
       evt.target.classList.add('stopped');
-      state = 'none';
-      delorean(true);
-      // while(timeoutIds.length !== 0){
-      //   pausedTimeouts.push(timeoutIds.pop());
-      // }
+      // state = 'none';
+      animateCars(true);
       break;
     case('stopped'):
       // console.log('in stopped');
       evt.target.classList.remove('stopped');
       evt.target.classList.add('running');
-      state = 'inline'
-      delorean();
-      // while(pausedTimeouts.length !== 0){
-      //   timeoutIds.push(pausedTimeouts.pop());
-      // }
+      animateCars();
       break;
-  }
-  // cars.forEach(car => {
-  //   // console.log(car);
-  //   car.style.display = state;
-  // });
-  
+  }  
 }

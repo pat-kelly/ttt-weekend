@@ -89,11 +89,13 @@ div.sqr {
 
 #d1{
   left:-150px;
-  top:-120px;
+  top:-140px;
+  width: 25px;
 }
 #d2{
   left:-150px;
-  top:-80px;
+  top:-120px;
+  width: 35px;
 }
 #d3{
   left:-150px;
@@ -102,10 +104,12 @@ div.sqr {
 #d4{
   left:-150px;
   top:-40px;
+  width: 65px;
 }
 #d5{
   left:-150px;
-  top:-20px;
+  top:-0px;
+  width: 75px;
 }
 
 #anim{
