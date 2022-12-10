@@ -17,15 +17,18 @@ const squareEls = document.getElementsByClassName('sqr');
 const msgEl = document.getElementById('message');
 const boardEl = document.getElementById('board');
 const resetBtnEl = document.getElementById('reset');
+const toggleAnim = document.getElementById('anim');
+const deloreans = document.getElementsByClassName('delorean');
 
 /*----------------------------- Event Listeners -----------------------------*/
 boardEl.addEventListener('click', handleClick);
 resetBtnEl.addEventListener('click', init);
+toggleAnim.addEventListener('click', hideDeloreans)
 
 /*-------------------------------- Functions --------------------------------*/
 //initialize after page loads.
 document.onload = init();
-document.onload = delorian();
+document.onload = delorean();
 
 function init(){
   //initialize variables
@@ -38,6 +41,7 @@ function init(){
   //initialize the board model to null values
   for (const sqr of squareEls) board.push(null);
   render();
+  // delorean();
 }
 
 function handleClick(evt){
@@ -109,20 +113,58 @@ function getCurPlayer(){
   return turn < 0 ? "Player 1" : "Player 2";
 }
 
-var timeoutId = null;
-function delorian(){
-  const dEl = document.getElementById('d1');
-  // console.log(dEl);
-  let pos = -150;
-  clearInterval(timeoutId);
-  timeoutId = setInterval(frame, 1);
-  function frame(){
-    if(pos === window.innerWidth){
-      // clearInterval(timeoutId);
-      pos=-150;
-    }else{
-      pos ++;
-      dEl.style.left = pos + 'px';
-    }
+const timeoutIds = [];
+
+function delorean(){
+
+  const delEls = document.querySelectorAll('.delorean');
+  console.log(delEls);
+
+  delEls.forEach((car, idx) => {
+    let pos = -150;
+    // console.log(car,idx);
+    clearInterval(timeoutIds[idx]);
+    timeoutIds[idx] = setInterval(frame, 1); //change 1 to something else non-static once you get this running.
+  });
+  // let pos = -150;
+  // clearInterval(timeoutId);
+  // timeoutId = setInterval(frame, 10);
+  // function frame(){
+  //   if(pos === window.innerWidth){
+  //     // clearInterval(timeoutId);
+  //     pos=-150;
+  //   }else{
+  //     pos ++;
+  //     dEl.style.left = pos + 'px';
+  //   }
+  // }
+
+}
+
+function hideDeloreans(evt){
+  // console.log(deloreans);
+  const cars = document.querySelectorAll('.delorean');
+  let targetClass = evt.target.className;
+  let state = '';
+
+  switch(targetClass){
+    case('running'):
+      console.log('in running');
+      evt.target.classList.remove('running');
+      evt.target.classList.add('stopped');
+      state = 'none';
+      break;
+    case('stopped'):
+      console.log('in stopped');
+      evt.target.classList.remove('stopped');
+      evt.target.classList.add('running');
+      state = 'inline'
+      break;
   }
+
+  cars.forEach(car => {
+    console.log(car);
+    car.style.display = state;
+  });
+  
 }

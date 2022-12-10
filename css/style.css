@@ -77,10 +77,28 @@ div.sqr {
   font-size: 2vmin;
 }
 
-#d1{
+.delorean{
   position:relative;
-  left:-150px;
+  z-index: -1;
+  
+}
+.delHide{
+  display:none;
+}
+
+#d1{
+  /* left:-150px; */
   top:-100px;
   width:50px;
+}
 
+#anim{
+  position:absolute;
+  top:5px;
+  right:5px;
+  font-size: 4vmin;
+}
+
+#anim:hover{
+  cursor: pointer;
 }
