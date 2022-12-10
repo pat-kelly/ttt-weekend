@@ -4,7 +4,8 @@ const winningCombos = [
   [0,3,6], [1,4,7], [2,5,8],
   [0,4,8], [2,4,6]
 ]
-
+const timeoutIds = [];
+const pausedTimeouts = [];
 /*---------------------------- Variables (state) ----------------------------*/
 let board, turn, winner, tie;
 //board is an array of the board state
@@ -28,7 +29,6 @@ toggleAnim.addEventListener('click', hideDeloreans)
 /*-------------------------------- Functions --------------------------------*/
 //initialize after page loads.
 document.onload = init();
-document.onload = delorean();
 
 function init(){
   //initialize variables
@@ -41,7 +41,7 @@ function init(){
   //initialize the board model to null values
   for (const sqr of squareEls) board.push(null);
   render();
-  // delorean();
+  delorean();
 }
 
 function handleClick(evt){
@@ -113,18 +113,45 @@ function getCurPlayer(){
   return turn < 0 ? "Player 1" : "Player 2";
 }
 
-const timeoutIds = [];
 
-function delorean(){
+
+function delorean(stop = false){
 
   const delEls = document.querySelectorAll('.delorean');
   console.log(delEls);
 
+  if(stop){
+    console.log('in stop');
+    let id = setTimeout(function() {}, 0);
+    // console.log(id);
+    while (id--) {
+      clearTimeout(id); // will do nothing if no timeout with id is present
+      timeoutIds.pop();
+    }
+    // delEls.forEach(car =>{
+    //   car.style.left = '';
+    // })
+    console.log(timeoutIds);
+    return;
+  }
+
   delEls.forEach((car, idx) => {
-    let pos = -150;
+    console.log(car.style.left);
+    let pos = car.style.left.slice(0,3);
+    console.log('pos',pos);
     // console.log(car,idx);
+    // console.log(timeoutIds)
     clearInterval(timeoutIds[idx]);
     timeoutIds[idx] = setInterval(frame, 1); //change 1 to something else non-static once you get this running.
+    function frame(){
+      if(pos === window.innerWidth){
+        pos = -150;
+      }else{
+        pos ++;
+        car.style.left = `${pos}px`;
+      }
+      // console.log(car.style.left);
+    }
   });
   // let pos = -150;
   // clearInterval(timeoutId);
@@ -149,22 +176,29 @@ function hideDeloreans(evt){
 
   switch(targetClass){
     case('running'):
-      console.log('in running');
+      // console.log('in running');
       evt.target.classList.remove('running');
       evt.target.classList.add('stopped');
       state = 'none';
+      delorean(true);
+      // while(timeoutIds.length !== 0){
+      //   pausedTimeouts.push(timeoutIds.pop());
+      // }
       break;
     case('stopped'):
-      console.log('in stopped');
+      // console.log('in stopped');
       evt.target.classList.remove('stopped');
       evt.target.classList.add('running');
       state = 'inline'
+      delorean();
+      // while(pausedTimeouts.length !== 0){
+      //   timeoutIds.push(pausedTimeouts.pop());
+      // }
       break;
   }
-
-  cars.forEach(car => {
-    console.log(car);
-    car.style.display = state;
-  });
+  // cars.forEach(car => {
+  //   // console.log(car);
+  //   car.style.display = state;
+  // });
   
 }

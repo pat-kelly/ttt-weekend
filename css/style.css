@@ -80,16 +80,32 @@ div.sqr {
 .delorean{
   position:relative;
   z-index: -1;
-  
+  width:50px;
+  display:flex;
 }
 .delHide{
   display:none;
 }
 
 #d1{
-  /* left:-150px; */
-  top:-100px;
-  width:50px;
+  left:-150px;
+  top:-120px;
+}
+#d2{
+  left:-150px;
+  top:-80px;
+}
+#d3{
+  left:-150px;
+  top:-60px;
+}
+#d4{
+  left:-150px;
+  top:-40px;
+}
+#d5{
+  left:-150px;
+  top:-20px;
 }
 
 #anim{
