@@ -25,9 +25,11 @@ resetBtnEl.addEventListener('click', init);
 /*-------------------------------- Functions --------------------------------*/
 //initialize after page loads.
 document.onload = init();
+document.onload = delorian();
 
 function init(){
   //initialize variables
+
   board = [];
   turn = -1;
   winner = false;
@@ -105,4 +107,22 @@ function updateMessage(){
 
 function getCurPlayer(){
   return turn < 0 ? "Player 1" : "Player 2";
+}
+
+var timeoutId = null;
+function delorian(){
+  const dEl = document.getElementById('d1');
+  // console.log(dEl);
+  let pos = -150;
+  clearInterval(timeoutId);
+  timeoutId = setInterval(frame, 1);
+  function frame(){
+    if(pos === window.innerWidth){
+      // clearInterval(timeoutId);
+      pos=-150;
+    }else{
+      pos ++;
+      dEl.style.left = pos + 'px';
+    }
+  }
 }

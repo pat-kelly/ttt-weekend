@@ -10,6 +10,7 @@ body {
   user-select: none;
   background-image: url('../assets/ttt_vape_bg.png');
   background-size:cover;
+  overflow-x: hidden;
   /* background-repeat: no-repeat; */
 }
 
@@ -28,7 +29,10 @@ body {
   
   background: linear-gradient(to top right, rgb(26, 26, 199), rgb(255, 0, 255));
   background-clip:text;
-  /* -webkit-background-clip: text; */
+
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  -moz-text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
 }
 
@@ -71,4 +75,12 @@ div.sqr {
   margin-top: 20px;
   padding: 1vmin 2vmin;
   font-size: 2vmin;
+}
+
+#d1{
+  position:relative;
+  left:-150px;
+  top:-100px;
+  width:50px;
+
 }
