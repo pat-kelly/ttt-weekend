@@ -96,7 +96,7 @@ function render(){
 function updateBoard(){
   board.forEach((sqr, idx) => {
     if(sqr){
-      sqr < 0 ? squareEls[idx].innerHTML = "<img src='../assets/X.png'>" : squareEls[idx].textContent = 'O'
+      sqr < 0 ? squareEls[idx].textContent = 'X' : squareEls[idx].textContent = 'O'
     }else squareEls[idx].textContent = '';
   });
 }
