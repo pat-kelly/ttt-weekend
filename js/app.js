@@ -23,13 +23,24 @@ const deloreans = document.getElementsByClassName('delorean');
 
 /*----------------------------- Event Listeners -----------------------------*/
 boardEl.addEventListener('click', handleClick);
-resetBtnEl.addEventListener('click', init);
+resetBtnEl.addEventListener('click', reload);
 toggleAnim.addEventListener('click', pauseAnims)
 
 /*-------------------------------- Functions --------------------------------*/
 //initialize after page loads.
 document.onload = init();
 document.onload = animateCars();
+
+function reload(){
+  boardEl.classList.remove('animate_rollIn');
+  boardEl.classList.add('animate__hinge');
+  setTimeout(function(){
+    boardEl.classList.remove('animate__hinge');
+    boardEl.classList.add('animate__rollIn');
+    setTimeout(function(){boardEl.classList.remove('animate__rollIn')},1500)
+    init();
+  }, 2000)
+}
 
 function init(){
   //initialize variables
@@ -47,15 +58,30 @@ function init(){
 function handleClick(evt){
   if(evt.target.id === 'board') return;
   const sqIdx = evt.target.id.slice(2);
-  // console.log('sqIdx', sqIdx)
-  // console.log(board[sqIdx])
-  if(board[sqIdx]) return;
-  if(winner) return;
+  // console.log(evt.target.firstChild.id);
+  // console.log('sqIdx', sqIdx);
+  // console.log(board[sqIdx]);
+  if(board[sqIdx]) {
+    invalidMove(evt);
+    return;
+  }
+  if(winner) {
+    invalidMove(evt);
+    return;
+  }
   placePiece(sqIdx);
   checkWinner();
   checkTie();
   switchPlayerTurn();
   render();
+}
+
+function invalidMove(evt){
+  console.log(evt.target.id);
+  const target = document.getElementById(evt.target.id)
+  target.classList.add('animate__headShake');
+  setTimeout(function(){target.classList.remove('animate__headShake')}, 500)
+  ;
 }
 
 function placePiece(idx){
@@ -113,8 +139,6 @@ function getCurPlayer(){
   return turn < 0 ? "Player 1" : "Player 2";
 }
 
-
-
 function animateCars(stop = false){
 
   const delEls = document.querySelectorAll('.delorean');
@@ -134,8 +158,8 @@ function animateCars(stop = false){
 
   delEls.forEach((car, idx) => {
     let pos = car.style.left.slice(0,-2);
-    console.log(pos);
-    const speed = [40, 30, 20, 10, 5]
+    // console.log(pos);
+    const speed = [40, 30, 20, 15, 10, 5, 1]
     clearInterval(timeoutIds[idx]);
     timeoutIds[idx] = setInterval(frame, ((speed[idx]))); //change 1 to something else non-static once you get this running.
     function frame(){
