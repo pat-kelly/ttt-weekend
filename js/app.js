@@ -189,7 +189,6 @@ function animateCars(stop = false){
         pos ++;
         car.style.left = `${pos}px`;
       }
-      // console.log(car.style.left);
     }
   });
 }
