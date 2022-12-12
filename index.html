@@ -1,3 +1,9 @@
+<!-- 
+  Tic Tac Toe - index.html
+  Due: 12 Dec. 2022
+  Coded by Patrick Kelly.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +23,7 @@
 	<div class="container">
 		<h1 id="title">Tic-Tac-Toe</h1>
 		<h2 id="message">Message</h2>
+		<!-- Had to wrap the squares in a wrapper, so I could animate the letters without moving the grid lines. -->
 		<section id="board" class="board animate__animated">
 			<div class="sqrWrap">
 				<div class="sqr animate__animated" id="sq0"></div>
@@ -27,6 +34,7 @@
 			<div class="sqrWrap">
 				<div class="sqr animate__animated" id="sq2"></div>
 			</div>
+
 			<div class="sqrWrap insideH">
 				<div class="sqr animate__animated" id="sq3"></div>
 			</div>
@@ -36,6 +44,7 @@
 			<div class="sqrWrap insideH">
 				<div class="sqr animate__animated" id="sq5"></div>
 			</div>
+
 			<div class="sqrWrap">
 				<div class="sqr animate__animated" id="sq6"></div>
 			</div>
@@ -49,6 +58,7 @@
 		<button id="reset">Reset</button>
 	</div>
 	
+	<!-- Here there be cars. -->
 	<div>
 		<img class="delorean" id="d1" width="100px" src="assets/delorean.png"> 
 		<img class="delorean" id="d2" width="100px" src="assets/delorean.png"> 

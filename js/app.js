@@ -1,3 +1,9 @@
+/* 
+  Tic Tac Toe - app.js
+  Due: 12 Dec. 2022
+  Coded by Patrick Kelly.
+*/
+
 /*-------------------------------- Constants --------------------------------*/
 const winningCombos = [
   [0,1,2], [3,4,5], [6,7,8],
@@ -5,6 +11,7 @@ const winningCombos = [
   [0,4,8], [2,4,6]
 ]
 const timeoutIds = []; //This stores the animation timeout IDs.
+
 /*---------------------------- Variables (state) ----------------------------*/
 let board, turn, winner, tie;
 //board is an array of the board state
@@ -24,16 +31,17 @@ const deloreans = document.getElementsByClassName('delorean');
 
 /*----------------------------- Event Listeners -----------------------------*/
 boardEl.addEventListener('click', handleClick);
-resetBtnEl.addEventListener('click', reload);
+resetBtnEl.addEventListener('click', reset);
 toggleAnim.addEventListener('click', pauseAnims)
 
-/*-------------------------------- Functions --------------------------------*/
+/*-------------------------------- Initializations --------------------------------*/
 //initialize after page loads.
 document.onload = init();
 document.onload = animateCars();
 
-function reload(){
-  /*reload takes 0 args, and animates the board, then sets a timeout to remove the animation classes, and call init.*/
+/*-------------------------------- Functions --------------------------------*/
+function reset(){
+  /*reload animates the board, then sets a timeout to remove the animation classes, and call init.*/
   boardEl.classList.remove('animate_rollIn');
   boardEl.classList.add('animate__hinge');
   setTimeout(function(){
@@ -46,12 +54,10 @@ function reload(){
 
 function init(){
   //initialize variables
-
   board = [];
   turn = -1;
   winner = false;
   tie = false;
- 
   //initialize the board model to null values
   for (const sqr of squareEls) board.push(null);
   render();
