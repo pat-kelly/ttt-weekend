@@ -110,6 +110,7 @@ winningCombos.forEach(combo =>{
   if(Math.abs(sum) === 3){
     winner = true;
     animateWinCombo(combo);
+    for(sqr of squareEls){sqr.classList.add('invalidMove')};
   }
 })
 }
