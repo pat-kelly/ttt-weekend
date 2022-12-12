@@ -66,7 +66,7 @@ function init(){
 
 function handleClick(evt){
   if(!(evt.target.classList.contains('sqr'))) return;
-  const sqIdx = evt.target.id.slice(2); //id of sq4 becomes 4
+  const sqIdx = parseInt(evt.target.id.replace('sq','')); //id of sq4 becomes 4
   if(board[sqIdx]) {
     invalidMove(evt); //function to do a shake animation
     return;
