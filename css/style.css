@@ -75,6 +75,10 @@ div.sqr{
   -webkit-text-fill-color: transparent;
 }
 
+.invalidMove:hover{
+  cursor:not-allowed;
+}
+
 .insideV {
   border-left: 2px solid rgb(255, 255, 255);
   border-right: 2px solid rgb(255, 255, 255);
@@ -103,6 +107,7 @@ div.sqr{
 }
 #reset:hover{
   background-color: rgba(21,60,180,1);
+  cursor:pointer;
 }
 #reset:active{
   box-shadow: inset 2px 2px 1px rgb(148,22,127)

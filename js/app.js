@@ -54,6 +54,7 @@ function reset(){
 
 function init(){
   //initialize variables
+  for(sqr of squareEls){ sqr.classList.remove('invalidMove');}
   board = [];
   turn = -1;
   winner = false;
@@ -64,7 +65,7 @@ function init(){
 }
 
 function handleClick(evt){
-  if(evt.target.id === 'board') return;
+  if(!(evt.target.classList.contains('sqr'))) return;
   const sqIdx = evt.target.id.slice(2); //id of sq4 becomes 4
   if(board[sqIdx]) {
     invalidMove(evt); //function to do a shake animation
@@ -90,6 +91,7 @@ function invalidMove(evt){
 }
 
 function placePiece(idx){
+  squareEls[idx].classList.add('invalidMove');
   board[idx] = turn;
 }
 
@@ -105,8 +107,21 @@ winningCombos.forEach(combo =>{
   combo.forEach(idx =>{
     sum += board[idx];
   })
-  if(Math.abs(sum) === 3) winner = true;
+  if(Math.abs(sum) === 3){
+    winner = true;
+    animateWinCombo(combo);
+  }
 })
+}
+
+function animateWinCombo(idxArray){
+  /* This function takes in the winning combo, in an array of indicies, then animates them. */
+  idxArray.forEach(idx => {
+    squareEls[idx].classList.add('animate__flip');
+    setTimeout(function(){
+      squareEls[idx].classList.remove('animate__flip');
+    }, 1500)
+  });
 }
 
 function switchPlayerTurn(){
@@ -190,10 +205,16 @@ function pauseAnims(evt){
       evt.target.classList.remove('running');
       evt.target.classList.add('stopped');
       animateCars(true);
+      for(car of deloreans){
+        car.classList.remove('animate__fadeIn');
+        car.classList.add('animate__fadeOut');}
       break;
     case('stopped'):
       evt.target.classList.remove('stopped');
       evt.target.classList.add('running');
+      for(car of deloreans){
+        car.classList.remove('animate__fadeOut');
+        car.classList.add('animate__fadeIn');}
       animateCars();
       break;
   }  
