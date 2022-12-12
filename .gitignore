@@ -22,7 +22,8 @@
 #================================= Archives ==================================#
 #                Unpack these files and commit the raw source.                #
 #                git has its own built in compression methods.                #
-
+assets/HELLODENVERDISPLAYREGULAR_v1.6.otf
+assets/Monoton-Regular.ttf
 # Compressed Files #
 *.7z
 *.jar
